@@ -1,9 +1,12 @@
 package krysi;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Tools {
     char[] z;
@@ -70,6 +73,24 @@ public class Tools {
 
         return  rigthWayString;
     }
+
+    public String hashWithMd5 (String plainText){
+        String hash = "";
+        Charset charset = Charset.forName("ASCII");
+        byte[] hashByte;
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            hashByte = md.digest(plainText.getBytes(charset));
+            hash = new String(hashByte, charset);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return hash;
+    }
+
+
 }
 
 
