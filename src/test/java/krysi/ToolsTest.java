@@ -1,7 +1,8 @@
 package krysi;
 
-import org.junit.Before;
 import org.junit.Test;
+
+import java.math.BigInteger;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,29 +16,29 @@ public class ToolsTest {
     private Tools tools = new Tools(z);
 
     @Test
-    public void readHashValue() {
+    public void testReadHashValue() {
         assertEquals("1d56a37fb6b08aa709fe90e12ca59e12",
                 tools.readHashValue("src/main/resources/hashValue.txt"));
     }
 
     @Test
-    public void hashToInteger() {
-        assertEquals(181823,tools.hashToInteger("i18n"));
+    public void testHashToBigInteger() {
+        assertEquals(new BigInteger("181823"),tools.hashToBigInteger("i18n"));
     }
 
     @Test
-    public void intToString() {
+    public void testIntToString() {
         int [] input = {20,27,34,28,18,1,2,3};
         assertEquals("krysi123",tools.intToString(input));
     }
 
     @Test
-    public void wrongToRightWayString() {
+    public void testWrongToRightWayString() {
         assertEquals("dcba", tools.wrongToRightWayString("abcd"));
     }
 
     @Test
-    public void hashWithMd5() {
+    public void testHashWithMd5() {
         assertEquals("29c3eea3f305d6b823f562ac4be35217",tools.hashWithMd5("0000000"));
     }
 }

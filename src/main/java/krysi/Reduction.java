@@ -1,13 +1,14 @@
 package krysi;
 
+import java.math.BigInteger;
+
 /**
  * This class offers all methods needed for a reduction step
  */
 public class Reduction {
     private int passwordLength;
     private char[] z;
-
-    private Tools tools = new Tools();
+    private Tools tools;
 
     /**
      * Construct the Reduction
@@ -17,6 +18,8 @@ public class Reduction {
      */
     public Reduction(int passwordLength, char[] z) {
         this.passwordLength = passwordLength;
+        this.z = z;
+        tools = new Tools(z);
     }
 
     /**
@@ -27,18 +30,19 @@ public class Reduction {
      * @return The reduced possible password
      */
     public String executeReduction(String inputHash, int step) {
-        // Convert the hash to an integer
-        int hash = tools.hashToInteger(inputHash);
+        // Convert the hash to a BigInteger
+        BigInteger hash = tools.hashToBigInteger(inputHash);
         int[] rI = new int[passwordLength];
-        // Add the step to the hash
-        hash = hash + step;
+        // Add the step to the hash. Convert step to String to be able to use BigInteger
+        hash = hash.add(new BigInteger(String.valueOf(step)));
+        BigInteger zLength = new BigInteger(String.valueOf(z.length));
         String wrongWayString = "";
         String rightWayString = "";
 
         // Execute the reduction and remember the alphabet indexes
         for (int i = 0; i < passwordLength; i++) {
-            rI[i] = hash % z.length;
-            hash = hash / z.length;
+            rI[i] = hash.mod(zLength).intValue();
+            hash = hash.divide(zLength);
         }
 
         // Convert the integer indexes to actual characters
@@ -48,6 +52,4 @@ public class Reduction {
 
         return rightWayString;
     }
-
-
 }
