@@ -8,15 +8,26 @@ import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * This class offers methods commonly used by ciphers
+ */
 public class Tools {
-    char[] z;
+    private char[] z;
 
     private String fileContent = "";
 
+    /**
+     * Construct the Tools with parameters
+     *
+     * @param z The alphabet the hash is consisting of
+     */
     public Tools(char[] z) {
         this.z = z;
     }
 
+    /**
+     * Construct the Tools
+     */
     public Tools() {
     }
 
@@ -26,7 +37,6 @@ public class Tools {
      * @param file the file path
      * @return the file content
      */
-
     public String readHashValue(String file) {
         try {
             Files.lines(Paths.get(file), StandardCharsets.UTF_8).forEach(s -> fileContent += s);
@@ -37,6 +47,12 @@ public class Tools {
         }
     }
 
+    /**
+     * Convert a string hash to an integer hash
+     *
+     * @param stepHash The string hash to be converted
+     * @return The converted integer hash
+     */
     public int hashToInteger(String stepHash) {
         int intHash = 0;
         String indexZ = "";
@@ -52,45 +68,60 @@ public class Tools {
         return intHash;
     }
 
-    public String intToString(int[] rI){
-        String rIString="";
-        for (int i=0; i<rI.length; i++){
+    /**
+     * Convert an integer hash to a string hash
+     *
+     * @param rI The integer hash to be converted
+     * @return The converted string hash
+     */
+    public String intToString(int[] rI) {
+        String rIString = "";
+        for (int i = 0; i < rI.length; i++) {
             String actualSymbol = Integer.toString(rI[i]);
-            for(int j=0; j<z.length;j++){
-                if(actualSymbol.equals(z[j])){
-                    rIString+=z[j];
-
+            for (int j = 0; j < z.length; j++) {
+                if (actualSymbol.equals(z[j])) {
+                    rIString += z[j];
                 }
             }
-
         }
         return rIString;
     }
 
-    public String wrongToRightWayString(String wrongWayString){
+    /**
+     * Reverse a string
+     *
+     * @param wrongWayString The string to be reversed
+     * @return The reversed string
+     */
+    public String wrongToRightWayString(String wrongWayString) {
         String rigthWayString = "";
         rigthWayString = new StringBuilder(wrongWayString).reverse().toString();
 
-        return  rigthWayString;
+        return rigthWayString;
     }
 
-    public String hashWithMd5 (String plainText){
+    /**
+     * Hash a given string with an MD5 algorithm
+     *
+     * @param plainText The string to be hashed
+     * @return The hashed string
+     */
+    public String hashWithMd5(String plainText) {
         String hash = "";
+        // Set a charset so the conversion is machine independent
         Charset charset = Charset.forName("ASCII");
         byte[] hashByte;
 
         try {
+            // Call Java inbuilt MD5-hasher. Needs bytes conversion first
             MessageDigest md = MessageDigest.getInstance("MD5");
             hashByte = md.digest(plainText.getBytes(charset));
             hash = new String(hashByte, charset);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
         return hash;
     }
-
-
 }
 
 
