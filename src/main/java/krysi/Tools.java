@@ -3,6 +3,7 @@ package krysi;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -52,8 +53,8 @@ public class Tools {
      * @param stepHash The string hash to be converted
      * @return The converted integer hash
      */
-    public int hashToInteger(String stepHash) {
-        int intHash = 0;
+    public BigInteger hashToBigInteger(String stepHash) {
+        BigInteger intHash = new BigInteger("0");
         String indexZ = "";
         for (int i = 0; i < stepHash.length(); i++) {
             char actualSymbol = stepHash.charAt(i);
@@ -63,7 +64,7 @@ public class Tools {
                 }
             }
         }
-        intHash = Integer.parseInt(indexZ);
+        intHash = new BigInteger(indexZ);
         return intHash;
     }
 
