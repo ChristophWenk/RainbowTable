@@ -27,5 +27,8 @@ public class Program {
 
         Reduction reduction = new Reduction(passwordLength, z);
 
+        Rainbow rainbow = new Rainbow(passwordLength, z, chainLength, r);
+        rainbow.createRainbowtable();
+
     }
 }
