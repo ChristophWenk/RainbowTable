@@ -38,6 +38,7 @@ public class ToolsTest {
     }
 
     @Test
-    public void testHashWithMd5() {
+    public void testGetMD5String() {
+        assertEquals("29c3eea3f305d6b823f562ac4be35217", tools.getMD5String("0000000"));
     }
 }

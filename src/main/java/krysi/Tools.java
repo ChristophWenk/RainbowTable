@@ -99,10 +99,10 @@ public class Tools {
     }
 
     /**
-     * Hash a given string with an MD5 algorithm
+     * Hash a given string with an MD5 algorithm and return its byte value
      *
      * @param plainText The string to be hashed
-     * @return The hashed string
+     * @return The hashed byte value
      */
     public byte[] hashWithMd5(String plainText) {
         byte[] hashByte;
@@ -119,10 +119,10 @@ public class Tools {
     }
 
     /**
-     * Hash a given string with an MD5 algorithm
+     * Hash a given string with an MD5 algorithm and return its String value
      *
      * @param plainText The string to be hashed
-     * @return The hashed string
+     * @return The hashed string value
      */
     public String getMD5String(String plainText) {
         // Use Apache DigestUtils to simplify MD5 hashing and avoid dealing with byte conversion
