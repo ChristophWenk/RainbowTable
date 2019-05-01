@@ -1,12 +1,12 @@
 package krysi;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * This class offers methods commonly used by ciphers
@@ -102,10 +102,18 @@ public class Tools {
      * @param plainText The string to be hashed
      * @return The hashed string
      */
-    public String hashWithMd5(String plainText) {
-        // Use Apache DigestUtils to simplify MD5 hashing and avoid dealing with byte conversion
-        String hash = DigestUtils.md5Hex(plainText).toLowerCase();
-        return hash;
+    public byte[] hashWithMd5(String plainText) {
+        byte[] hashByte;
+        // Set a charset so the conversion is machine independent
+        try {
+            // Call Java inbuilt MD5-hasher
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            hashByte = md.digest(plainText.getBytes());
+            return hashByte;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
 

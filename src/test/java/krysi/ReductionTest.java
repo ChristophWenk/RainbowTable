@@ -1,6 +1,7 @@
 package krysi;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 
@@ -11,11 +12,13 @@ public class ReductionTest {
                         'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
                         'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
+    private Tools tools = new Tools(z);
     private int passwordLength = 7;
     private Reduction reduction = new Reduction(passwordLength,z);
 
     @Test
     public void testExecuteReduction() {
-        assertEquals("87inwgn",reduction.executeReduction("29c3eea3f305d6b823f562ac4be35217",0));
+        byte[] inputHash = tools.hashWithMd5("0000000");
+        assertEquals("87inwgn",reduction.executeReduction(inputHash,0));
     }
 }
