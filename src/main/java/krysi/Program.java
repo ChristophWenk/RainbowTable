@@ -29,6 +29,9 @@ public class Program {
 
         Rainbow rainbow = new Rainbow(passwordLength, z, chainLength, r);
         rainbow.createRainbowtable();
+        String password = rainbow.matchInput("asdasdasd");
+
+        System.out.println(password);
 
     }
 }

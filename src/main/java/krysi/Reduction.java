@@ -31,7 +31,7 @@ public class Reduction {
      */
     public String executeReduction(byte[] inputHash, int step) {
         // Convert the hash to a BigInteger
-        BigInteger hash = new BigInteger(inputHash);
+        BigInteger hash = new BigInteger(1, inputHash);
         // Add the step to the hash
         hash = hash.add(BigInteger.valueOf(step));
 

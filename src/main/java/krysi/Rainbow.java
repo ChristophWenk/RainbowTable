@@ -1,6 +1,7 @@
 package krysi;
 
 import org.apache.commons.collections.BidiMap;
+import org.apache.commons.collections.MapIterator;
 import org.apache.commons.collections.bidimap.DualHashBidiMap;
 
 public class Rainbow {
@@ -41,8 +42,29 @@ public class Rainbow {
             for (int j = 0; j < chainLength; j++) {
                 byte [] hashedValue = tools.hashWithMd5(lastValue);
                 lastValue = reduction.executeReduction(hashedValue,j);
+                //System.out.println(j + " : " + lastValue);
             }
-            System.out.println(lastValue);
+            rainbowTable.put(firstValue,lastValue);
+            //System.out.println(firstValue + " : " + lastValue);
         }
+    }
+
+    public String matchInput(String hashValue) {
+        MapIterator it = rainbowTable.mapIterator();
+        while(it.hasNext()) {
+            String nextHash = (String) it.next();
+            for (int i = 0; i < chainLength; i++) {
+                byte[] hash = tools.hashWithMd5(nextHash);
+                String hashString = tools.getMD5String(nextHash);
+
+                if (hashString.equals("1d56a37fb6b08aa709fe90e12ca59e12")) {
+                    System.out.println(hashString + " Hurra");
+                    return nextHash;
+                }
+                nextHash = reduction.executeReduction(hash,i);
+            }
+
+        }
+        return null;
     }
 }

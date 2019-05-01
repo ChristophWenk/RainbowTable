@@ -1,5 +1,7 @@
 package krysi;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -114,6 +116,18 @@ public class Tools {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Hash a given string with an MD5 algorithm
+     *
+     * @param plainText The string to be hashed
+     * @return The hashed string
+     */
+    public String getMD5String(String plainText) {
+        // Use Apache DigestUtils to simplify MD5 hashing and avoid dealing with byte conversion
+        String hash = DigestUtils.md5Hex(plainText).toLowerCase();
+        return hash;
     }
 }
 
