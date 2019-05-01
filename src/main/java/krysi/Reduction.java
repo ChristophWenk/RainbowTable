@@ -32,10 +32,12 @@ public class Reduction {
     public String executeReduction(String inputHash, int step) {
         // Convert the hash to a BigInteger
         BigInteger hash = tools.hashToBigInteger(inputHash);
-        int[] rI = new int[passwordLength];
         // Add the step to the hash. Convert step to String to be able to use BigInteger
         hash = hash.add(new BigInteger(String.valueOf(step)));
+
+        // Initialize variables
         BigInteger zLength = new BigInteger(String.valueOf(z.length));
+        int[] rI = new int[passwordLength];
         String wrongWayString = "";
         String rightWayString = "";
 
