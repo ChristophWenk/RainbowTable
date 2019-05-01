@@ -76,12 +76,8 @@ public class Tools {
     public String intToString(int[] rI) {
         String rIString = "";
         for (int i = 0; i < rI.length; i++) {
-            String actualSymbol = Integer.toString(rI[i]);
-            for (int j = 0; j < z.length; j++) {
-                if (actualSymbol.equals(z[j])) {
-                    rIString += z[j];
-                }
-            }
+            int lookupIndex = rI[i];
+            rIString += z[lookupIndex];
         }
         return rIString;
     }
