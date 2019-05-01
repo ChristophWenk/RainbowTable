@@ -7,7 +7,7 @@ public class Reduction {
     private int passwordLength;
     private char[] z;
 
-    private Tools tools = new Tools();
+    private Tools tools;
 
     /**
      * Construct the Reduction
@@ -17,6 +17,8 @@ public class Reduction {
      */
     public Reduction(int passwordLength, char[] z) {
         this.passwordLength = passwordLength;
+        this.z = z;
+        tools = new Tools(z);
     }
 
     /**
