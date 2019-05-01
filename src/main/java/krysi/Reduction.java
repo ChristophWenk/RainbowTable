@@ -43,6 +43,7 @@ public class Reduction {
 
         // Execute the reduction and remember the alphabet indexes
         for (int i = 0; i < passwordLength; i++) {
+            BigInteger test = hash.mod(zLength);
             rI[i] = hash.mod(zLength).intValue();
             hash = hash.divide(zLength);
         }
