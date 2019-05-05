@@ -33,7 +33,6 @@ public class Rainbow {
         this.r = r;
         reduction  = new Reduction(passwordLength, z);
         tools = new Tools(z);
-        createRainbowTable();
     }
 
     /**

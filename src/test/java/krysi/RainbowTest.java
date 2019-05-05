@@ -14,8 +14,14 @@ public class RainbowTest {
     int chainLength = 2000;
     int r = 2000;
 
-    Rainbow rainbow = new Rainbow(passwordLength, z, chainLength, r);
-    Tools tools = new Tools(z);
+    Rainbow rainbow;
+    Tools tools;
+
+    public RainbowTest() {
+        rainbow = new Rainbow(passwordLength, z, chainLength, r);
+        rainbow.createRainbowTable();
+        tools = new Tools(z);
+    }
 
     @Test
     public void testMatchInput() {
