@@ -81,9 +81,60 @@ public class Rainbow {
                 if (hashString.equals(hashValue)) {
                     return nextHash;
                 }
+                //BigInteger test = new BigInteger(hashString, 16);
                 nextHash = reduction.executeReduction(hash,i);
             }
         }
         return null;
     }
+
+
+
+
+    /**
+     * Find a password in a specific chain. This can be used when we know that an input hash
+     * matches a hash in a specific chain.
+     *
+     * @param firstValue The first possible password value of the chain to be searched in
+     * @param hashValue The hash value to be compared
+     * @return The found password
+     */
+    public String findPassword(String firstValue, String hashValue) {
+
+        String possiblePassword = (String) firstValue;
+        for (int i = 0; i < chainLength; i++) {
+            byte[] hash = tools.hashWithMd5(possiblePassword);
+            String hashString = tools.getMD5String(possiblePassword);
+            if (hashString.equals(hashValue)) {
+                return possiblePassword;
+            }
+            possiblePassword = reduction.executeReduction(hash, i);
+        }
+        return null;
+    }
+
+    /**
+     * Search the first value of a chain by executing a chain process to find the last value and look
+     * up the first value in the rainbow table.
+     *
+     * @param hashValue The hash value to be searched in the chain
+     * @return The found first possible password value of a chain
+     */
+//    public String findFirstValue(String hashValue) {
+//        String hashString = "";
+//        for (int i = 0; i < chainLength; i++) {
+//            String possiblePassword = reduction.executeReduction(hashValue); // TODO Resolve conversion issue
+//            // If the found value matches a last value in the rainbow table,
+//            // lookup the first value and return it
+//            if (rainbowTable.getKey(possiblePassword).toString() != null) {
+//                return rainbowTable.getKey(possiblePassword).toString();
+//            }
+//            if (hashString.equals(hashValue)) {
+//                return possiblePassword;
+//            }
+//            byte[] hash = tools.hashWithMd5(possiblePassword);
+//            hashString = tools.getMD5String(possiblePassword);
+//        }
+//        return null;
+//    }
 }

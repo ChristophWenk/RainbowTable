@@ -21,4 +21,10 @@ public class ReductionTest {
         byte[] inputHash = tools.hashWithMd5("0000000");
         assertEquals("87inwgn",reduction.executeReduction(inputHash,0));
     }
+
+    @Test
+    public void testExecuteReduction2() {
+//        String inputHash = tools.hashWithMd5("0000000");
+//        assertEquals("87inwgn",reduction.executeReduction(inputHash,0));
+    }
 }
