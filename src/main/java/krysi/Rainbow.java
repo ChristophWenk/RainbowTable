@@ -64,7 +64,9 @@ public class Rainbow {
     }
 
     /**
-     * Find a given hash in the Rainbow Table and return the matching password
+     * Find a given hash in the Rainbow Table and return the matching password.
+     * This is very inefficient as it fully creates every chain until the password has been found.
+     * Helpful for testing purposes.
      *
      * @param hashValue The hash to be checked
      * @return The password matching the hash
@@ -85,9 +87,6 @@ public class Rainbow {
         }
         return null;
     }
-
-
-
 
     /**
      * Find a password in a specific chain. This can be used when we know that an input hash

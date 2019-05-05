@@ -6,6 +6,8 @@ import java.math.BigInteger;
  * This class offers all methods needed for a reduction step
  */
 public class Reduction {
+
+    // Class variables
     private int passwordLength;
     private char[] z;
     private Tools tools;

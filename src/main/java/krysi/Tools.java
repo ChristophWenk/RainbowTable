@@ -12,8 +12,9 @@ import java.nio.file.Paths;
  * This class offers methods commonly used by ciphers
  */
 public class Tools {
-    private char[] z;
 
+    // Class variables
+    private char[] z;
     private String fileContent = "";
 
     /**
