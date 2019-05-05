@@ -18,7 +18,7 @@ public class ReductionTest {
 
     @Test
     public void testExecuteReduction() {
-        byte[] inputHash = tools.hashWithMd5("0000000");
+        String inputHash = tools.getMD5String("0000000");
         assertEquals("87inwgn",reduction.executeReduction(inputHash,0));
     }
 

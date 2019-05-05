@@ -56,7 +56,7 @@ public class Rainbow {
             // Create last value in chains
             String lastValue = firstValue;
             for (int j = 0; j < chainLength; j++) {
-                byte [] hashedValue = tools.hashWithMd5(lastValue);
+                String hashedValue = tools.getMD5String(lastValue);
                 lastValue = reduction.executeReduction(hashedValue,j);
             }
             rainbowTable.put(firstValue,lastValue);
@@ -76,13 +76,11 @@ public class Rainbow {
             String nextHash = (String) it.next();
             // Check each chain if the value can be found
             for (int i = 0; i < chainLength; i++) {
-                byte[] hash = tools.hashWithMd5(nextHash);
                 String hashString = tools.getMD5String(nextHash);
                 if (hashString.equals(hashValue)) {
                     return nextHash;
                 }
-                //BigInteger test = new BigInteger(hashString, 16);
-                nextHash = reduction.executeReduction(hash,i);
+                nextHash = reduction.executeReduction(hashString,i);
             }
         }
         return null;
@@ -91,27 +89,27 @@ public class Rainbow {
 
 
 
-    /**
-     * Find a password in a specific chain. This can be used when we know that an input hash
-     * matches a hash in a specific chain.
-     *
-     * @param firstValue The first possible password value of the chain to be searched in
-     * @param hashValue The hash value to be compared
-     * @return The found password
-     */
-    public String findPassword(String firstValue, String hashValue) {
-
-        String possiblePassword = (String) firstValue;
-        for (int i = 0; i < chainLength; i++) {
-            byte[] hash = tools.hashWithMd5(possiblePassword);
-            String hashString = tools.getMD5String(possiblePassword);
-            if (hashString.equals(hashValue)) {
-                return possiblePassword;
-            }
-            possiblePassword = reduction.executeReduction(hash, i);
-        }
-        return null;
-    }
+//    /**
+//     * Find a password in a specific chain. This can be used when we know that an input hash
+//     * matches a hash in a specific chain.
+//     *
+//     * @param firstValue The first possible password value of the chain to be searched in
+//     * @param hashValue The hash value to be compared
+//     * @return The found password
+//     */
+//    public String findPassword(String firstValue, String hashValue) {
+//
+//        String possiblePassword = (String) firstValue;
+//        for (int i = 0; i < chainLength; i++) {
+//            byte[] hash = tools.hashWithMd5(possiblePassword);
+//            String hashString = tools.getMD5String(possiblePassword);
+//            if (hashString.equals(hashValue)) {
+//                return possiblePassword;
+//            }
+//            possiblePassword = reduction.executeReduction(hash, i);
+//        }
+//        return null;
+//    }
 
     /**
      * Search the first value of a chain by executing a chain process to find the last value and look

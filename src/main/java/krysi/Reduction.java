@@ -29,9 +29,9 @@ public class Reduction {
      * @param step The current step to be added to the hash
      * @return The reduced possible password
      */
-    public String executeReduction(byte[] inputHash, int step) {
+    public String executeReduction(String inputHash, int step) {
         // Convert the hash to a BigInteger
-        BigInteger hash = new BigInteger(1, inputHash);
+        BigInteger hash = new BigInteger(inputHash,16);
         // Add the step to the hash
         hash = hash.add(BigInteger.valueOf(step));
 
