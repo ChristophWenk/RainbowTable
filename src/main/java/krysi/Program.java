@@ -31,7 +31,11 @@ public class Program {
 
         // Build the rainbow table and find the hash
         rainbow.createRainbowTable();
-        String password = rainbow.matchInput(hashValue);
+        //String password = rainbow.matchInput(hashValue);
+
+
+        String firstValue = rainbow.findFirstValue(hashValue);
+        String password = rainbow.findPassword(firstValue, hashValue);
 
         System.out.println(password);
     }

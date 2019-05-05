@@ -7,8 +7,6 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * This class offers methods commonly used by ciphers
@@ -96,26 +94,6 @@ public class Tools {
         rigthWayString = new StringBuilder(wrongWayString).reverse().toString();
 
         return rigthWayString;
-    }
-
-    /**
-     * Hash a given string with an MD5 algorithm and return its byte value
-     *
-     * @param plainText The string to be hashed
-     * @return The hashed byte value
-     */
-    public byte[] hashWithMd5(String plainText) {
-        byte[] hashByte;
-        // Set a charset so the conversion is machine independent
-        try {
-            // Call Java inbuilt MD5-hasher
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            hashByte = md.digest(plainText.getBytes());
-            return hashByte;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     /**

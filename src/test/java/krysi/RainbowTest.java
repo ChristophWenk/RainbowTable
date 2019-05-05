@@ -27,4 +27,14 @@ public class RainbowTest {
         assertEquals("1d56a37fb6b08aa709fe90e12ca59e12",tools.getMD5String("0bgec3d"));
     }
 
+    @Test
+    public void testFindPassword() {
+        assertEquals("0bgec3d", rainbow.findPassword("00000rs","1d56a37fb6b08aa709fe90e12ca59e12"));
+    }
+
+    @Test
+    public void testFindFirstValue() {
+        assertEquals("00000rs",rainbow.findFirstValue("1d56a37fb6b08aa709fe90e12ca59e12"));
+    }
+
 }
